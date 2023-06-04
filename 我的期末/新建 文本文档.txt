@@ -1,0 +1,23 @@
+Clock.bpm = 120
+Graphics.quality = 'high'
+Graphics.animate = false
+kick = Kick()
+kick.trigger.seq( 1,1/4 )
+mat1 = Material( 'phong', Vec3(.05), Vec3(.05), Vec3(1), 1, Vec3(1,50,5) )
+Light( Vec3(2,2,2), Vec3(0,0,1) )
+Light( Vec3(-2,2,2), Vec3(1,0,0.4) )
+Light( Vec3(0,0,-2), Vec3(0.2,0.5,0.1) )
+t = Texture('stripes', { scale:5 })
+box = Box()
+.bump( t, .025 )
+.material(mat1)
+.rotate( 45,1,1,1 )
+.render()
+box.size.map(kick,1,1)//the box can be changed with the beat
+onframe = time => box.rotate( time * 15, 1,1,1 )
+
+
+a15 = Monosynth('easyfx',{detune2:-.5025,detune3:-.7525,antialias:true,octave:-1,decay:1/8}).note.seq([2,2,5,6,7,6,5,3,3,2,1,2,2,2,5,6,7,6,5,3,5,1,2,2,-2,0,0,-1],[1/2,1/4].rnd())
+a16 = Monosynth('chords',{detune2:-.5025,detune3:-.7525,antialias:true,octave:-1,decay:1/8}).note.seq([2,2,5,6,7,6,5,3,3,2,1,2,2,2,5,6,7,6,5,3,5,1,2,2,-2,0,0,-1],[1/2,1/4].rnd())
+a17 = Monosynth('wander',{detune2:-.5025,detune3:-.7525,antialias:true,octave:-1,decay:1/8}).note.seq([2,2,5,6,7,6,5,3,3,2,1,2,2,2,5,6,7,6,5,3,5,1,2,2,-2,0,0,-1],[1/2].rnd())
+a18 = Monosynth('chords.short',{detune2:-.5025,detune3:-.7525,antialias:true,octave:-1,decay:1/8}).note.seq([2,2,5,6,7,6,5,3,3,2,1,2,2,2,5,6,7,6,5,3,5,1,2,2,-2,0,0,-1],[1/4,1/8].rnd())

@@ -1,0 +1,47 @@
+// a short demo of classic raymarching
+// melding effects. Three rings and a
+// plane, melting into each other. The
+// rings use a stairs transition to 
+// generate steps where they merge.
+Clock.bmp = 120
+
+kick = Kick().trigger.seq( 1,1/4 )
+
+bass = FM('deepbass').note.seq( sine(2,4)             , Euclid(3,8)/* 10010010 */     )
+
+bass1 = FM('deepbass').note.seq( sine(3,4)            , Euclid(2,8)/* 10001000 */    )
+                               
+bass2 = FM('deepbass').note.seq( sine(1,4)             , Euclid(4,8)/* 10101010 */     )
+
+
+mat1 = Material( 'phong', Vec3(.05), Vec3(.05), Vec3(1), 1, Vec3(1,50,5) )
+
+mat2 = Material( 'phong', Vec3(.05), Vec3(.05), Vec3(1))
+ tex = Texture('zigzag')
+
+mat1 = Material( 'phong', Vec3(.05), Vec3(.05), Vec3(1), 1, Vec3(1,50,5) )
+Light( Vec3(2,2,2), Vec3(0,0,1) )
+Light( Vec3(-2,2,2), Vec3(1,0,0.4) )
+Light( Vec3(0,0,-2), Vec3(0.2,0.5,0.1) )
+s1 =Box().material(mat1).texture('zigzag')
+s2 = Box().material(mat1).texture('zigzag')
+s3 =Box().material(mat1).texture('zigzag')
+  
+f = Fog(.25,Vec3(0))
+ 
+RoundUnion(
+  ru = StairsUnion2( s1,s2,s3, .5,15 ),
+  Plane().texture('checkers')
+).render(3)
+ x = 0
+
+onframe = t => {
+  s1.translate(-2+kick.out(0.5), Math.sin(kick.out(0.5)/4),   Math.sin(kick.out(0.5)/4)+Math.cos(kick.out(0.5)/4) ).rotate(t*5,1,0,0)
+  s2.translate(+2+Math.sin(kick.out(0.5)/4),  Math.sin(kick.out(0.5)/4), Math.sin(kick.out(0.5)/4)+Math.cos(kick.out(0.5)/4)  ).rotate(t*6,1,0,0 )
+ s3.translate( 0+Math.sin(kick.out(0.5)/4), Math.sin(kick.out(0.5)/4)  ).rotate(t*7,1,0,0)
+  camera.rotation = t/10
+}
+s1.size.map(kick,1,0.5)
+s2.size.map(kick,1,0.5)
+s3.size.map(kick,1,0.5)
+camera.pos.z = 4
