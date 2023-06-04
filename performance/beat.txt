@@ -1,0 +1,15 @@
+/beat1
+d = Drums()
+d.tidal('ch ~ [kd , sd ] ~ kd ~ kd ~ kd ~ [sd , ch]',1)
+/beat2
+d = Drums()
+d.tidal('ch ~ [sd , ch ] ~ kd ~ [sd , ch] ~ kd ~ [sd , ch] ~ kd ~ kd' ,1)
+/beat3
+d = Drums()
+d.tidal('kd ~ [sd , ch ] ' ,1)
+/beat4
+d = Drums()
+d.tidal('kd ~ kd~ [sd , ch ] ' ,1)
+/beat5
+d = Drums()
+d.tidal('ch ~ [sd , ch ] ~ kd ~ [sd , ch]', 1)
