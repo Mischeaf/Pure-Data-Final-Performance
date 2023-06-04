@@ -1,0 +1,34 @@
+Graphics.quality = 'high'
+Graphics.animate = false
+kick = Kick()
+//kick.trigger.seq( 1,1/4 )
+mat1 = Material( 'yellow', Vec3(.05), Vec3(.05), Vec3(2),5, Vec3(1,50,5) )
+Light( Vec3(2,2,2), Vec3(0,1,1) )
+Light( Vec3(-2,2,2), Vec3(1,0,2) )
+Light( Vec3(2,-2,-2), Vec3(0.5,0.5,0.1) )
+t = Texture('dots', { scale:10 })
+box = Box(0.7)
+//.bump( t, .025 )
+.material(mat1)
+.rotate( 45,1,1,1 )
+box.size.map(kick,1,1)//the box can be changed with the beat
+onframe = time => box.rotate(time * 15, 1,time * 30,1 )
+R = Repeat(
+  box,
+  Vec3( 1.5)
+).render()
+//RoundUnion(
+///  Ru = R,
+  //Plane().texture('checkers')
+//).render()
+R.distance.z.map(kick,0.1,1)
+
+//R.distance.z.map(kick,1,1)
+syn = PolySynth('sine')
+R.distance.x.map(syn,1,1)
+R.distance.y.map( syn, 1, 1 )
+syn.chord.seq( [[4,6,5,2,3,1],[6,2,3,4,1,4],[2,4,7,3,2,5]], 2 )
+onframe = t => {
+  // rotate entire geometry
+  R.rotate( t,0,1,0)
+}

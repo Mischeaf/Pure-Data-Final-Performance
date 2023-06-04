@@ -1,0 +1,50 @@
+const beats = 64
+drums1 = EDrums()
+Clock.bpm = beats
+
+drums2 = Drums()
+drums2.tidal('< [kd,sd] oh > ch*2')
+
+s1 = Steps({
+  kd: 'c.4.4.8.4.4.',                          
+  cp: '99.66.99.66.',                                                                     
+  oh: '.2.4.2.2.4.2',                                    
+  sd: 'f..af..af..a.'                                     
+}, drums1)
+
+s1.stop()
+
+s8 = Synth('cry').fx.add(Reverb().note.seq(Rndi(0,20),[1/2,1/4].rnd()))                        
+s8.stop()
+
+drums2.stop()
+
+b = FM('bass')
+b.note.seq(Rndi(0,7), Euclid(3,8)) 
+b.attack=1/32
+b.sustain = 1/6
+b.decay=1/6
+b.release = 1/12
+b.index.seq([3,1,1,2,1,1],1/6)
+
+b.stop()
+
+syn2 = Monosynth('dirty')  
+syn2.note.tidal( '-5 -2 5 2 -2 -5' )
+syn2.pan.tidal( '0.4 0.2 0.2 0.3 0.2 0.2' )
+syn2.cutoff.tidal( '2 2 2 2 2 2' )
+
+syn2.stop()
+
+s9 = Synth('brass').fx.add(Reverb().note.seq(Rndi(-10,10),[1/2,1/4,1/8].rnd()))
+9s.stop()
+
+syn1 = Monosynth('easy')
+syn1.note.tidal( '[-2,0,2] <5 9>*2 [7 6]*2 [4,8] <5 3> <5 2>' )
+syn1.pan.tidal( '1.2 0.9 1.0' )
+syn1.cutoff.tidal( '.85 .18 1.5' )
+
+syn1.stop()
+
+b7 = FM('frog').note.seq(Rndi(-6,15)/* 6 */,[1/4,1/8].rnd())
+b7.stop()
