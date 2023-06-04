@@ -6,9 +6,13 @@
 // generate steps where they merge.
 Clock.bmp = 120
 
-h = Hat()
-h.trigger.seq(sine(5,1,0.01) , [1/16,1/8].rnd())
-h.tune.seq(Rndf(0.5,0.7), 1/16)
+kick = Kick().trigger.seq( 1,1/2 )
+
+bass = FM('deepbass').note.seq( sine(2,4)                , Euclid(3,8)     )
+
+bass1 = FM('deepbass').note.seq( sine(3,4)                 , Euclid(2,8)/* 10001000 */      )
+                               
+bass2 = FM('deepbass').note.seq( sine(1,4)                  , Euclid(4,8)/* 10101010 */       )
 
 
 mat1 = Material( 'phong', Vec3(.05), Vec3(.05), Vec3(1), 1, Vec3(1,50,5) )
@@ -35,12 +39,18 @@ RoundUnion(
  x = 0
 
 onframe = t => {
-  s1.translate(-2+h.out(0.5), Math.sin(h.out(0.5)/4),   Math.sin(h.out(0.5)/4)+Math.cos(h.out(0.5)/4) ).rotate(t*5,1,0,0)
-  s2.translate(+2+Math.sin(h.out(0.5)/4),  Math.sin(h.out(0.5)/4), Math.sin(h.out(0.5)/4)+Math.cos(h.out(0.5)/4)  ).rotate(t*6,1,0,0 )
- s3.translate( 0+Math.sin(h.out(0.5)/4), Math.sin(h.out(0.5)/4)  ).rotate(t*7,1,0,0)
+  s1.translate(-2+kick.out(0.5), Math.sin(kick.out(0.5)/4),   Math.sin(kick.out(0.5)/4)+Math.cos(kick.out(0.5)/4) ).rotate(t*5,1,0,0)
+  s2.translate(+2+Math.sin(kick.out(0.5)/4),  Math.sin(kick.out(0.5)/4), Math.sin(kick.out(0.5)/4)+Math.cos(kick.out(0.5)/4)  ).rotate(t*6,1,0,0 )
+ s3.translate( 0+Math.sin(kick.out(0.5)/4), Math.sin(kick.out(0.5)/4)  ).rotate(t*7,1,0,0)
   camera.rotation = t/10
 }
-s1.size.map(h,1,0.5)
-s2.size.map(h,1,0.5)
-s3.size.map(h,1,0.5)
+s1.size.map(kick,1,0.5)
+s2.size.map(kick,1,0.5)
+s3.size.map(kick,1,0.5)
 camera.pos.z = 4
+
+d = EDrums()
+d.tidal('[kd, ch]*6 [sd, ch] ch*8  [kd, ch] ~ <[oh, ch] [kd, ch]>*3 [sd, ch] oh')
+
+
+kick = Kick().trigger.seq( 1,1/4 )
