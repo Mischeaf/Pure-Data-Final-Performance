@@ -58,7 +58,7 @@
 #X obj 747 728 bng 19 250 50 0 empty empty empty 0 -10 0 12 #fcfcfc #000000 #000000;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array squence 16 float 3;
-#A 0 60 0 67 72 76 0 84 88 91 0 98 70 72 0 65 68;
+#A 0 72 0 76 77 79 0 83 84 84 0 81 79 77 0 74 72;
 #X coords 0 7 16 0 200 200 1 0 0;
 #X restore 616 198 graph;
 #X obj 781 82 tgl 19 0 empty empty empty 0 -10 0 12 #ffc7c6 #000000 #000000 0 1;
@@ -242,7 +242,7 @@
 #X connect 51 0 33 0;
 #X connect 52 0 53 1;
 #X connect 53 0 42 0;
-#X coords 0 -1 1 1 400 200 1 0 0;
+#X coords 0 966 1 965 400 200 0;
 #X restore 69 84 pd symtha;
 #N canvas 72 1009 1920 966 symthb 1;
 #X text 454 181 A3;
@@ -424,7 +424,7 @@
 #X obj 565 937 outlet~;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array squence4 16 float 3;
-#A 0 0 10 20 30 40 50 60 70 80 90 0 0 0 0 0 0;
+#A 0 80 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X coords 0 1 16 -1 199 140 1 0 0;
 #X restore 1432 600 graph;
 #X floatatom 545 469 5 0 0 0 - - - 0;
