@@ -1,3 +1,4 @@
+
 // a short demo of classic raymarching
 // melding effects. Three rings and a
 // plane, melting into each other. The
@@ -5,13 +6,13 @@
 // generate steps where they merge.
 Clock.bmp = 120
 
-kick = Kick().trigger.seq( 1,1/4 )
+kick = Kick().trigger.seq( 1,1/2 )
 
-bass = FM('deepbass').note.seq( sine(2,4)             , Euclid(3,8)/* 10010010 */     )
+bass = FM('deepbass').note.seq( sine(2,4)               , Euclid(3,8)/* 10010010 */      )
 
-bass1 = FM('deepbass').note.seq( sine(3,4)            , Euclid(2,8)/* 10001000 */    )
+bass1 = FM('deepbass').note.seq( sine(3,4)              , Euclid(2,8)/* 10001000 */      )
                                
-bass2 = FM('deepbass').note.seq( sine(1,4)             , Euclid(4,8)/* 10101010 */     )
+bass2 = FM('deepbass').note.seq( sine(1,4)               , Euclid(4,8)/* 10101010 */       )
 
 
 mat1 = Material( 'phong', Vec3(.05), Vec3(.05), Vec3(1), 1, Vec3(1,50,5) )
@@ -24,9 +25,11 @@ Light( Vec3(2,2,2), Vec3(0,0,1) )
 Light( Vec3(-2,2,2), Vec3(1,0,0.4) )
 Light( Vec3(0,0,-2), Vec3(0.2,0.5,0.1) )
 s1 =Box().material(mat1).texture('zigzag')
+s1.bump( tex, .025 )
 s2 = Box().material(mat1).texture('zigzag')
+s2.bump( tex, .025 )
 s3 =Box().material(mat1).texture('zigzag')
-  
+s3.bump( tex, .025 )
 f = Fog(.25,Vec3(0))
  
 RoundUnion(

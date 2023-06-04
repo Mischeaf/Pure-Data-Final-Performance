@@ -29,7 +29,25 @@ syn = PolySynth('rhodes')
 R.distance.x.map(syn,5,1)
 R.distance.y.map( syn, 5, 1 )
 syn.chord.seq( [[0,2,4,5],[1,2,3,4],[11,1,1,1],[2,3,4,5],[3,7,5,9]], 2 )
+
+syn1 = Synth('square.perc')
+  
+syn1.note.seq( ptrn = [0,1,2,3], 1/16 )
+ 
+// run a bit later to hear randomization
+ptrn.addFilter( (args, __ptrn) => {
+  // get a random index
+  const idx = Math.floor( Math.random() * __ptrn.values.length )
+  
+  // use the idx to return a random valuee
+  args[0] = __ptrn.values[ idx ]
+  
+  return args
+})
+
 onframe = t => {
   // rotate entire geometry
   R.rotate( t,0,1,0)
 }
+R.distance.x.map(syn1,5,1)
+R.distance.y.map( syn1, 5, 1 )
